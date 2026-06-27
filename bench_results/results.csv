@@ -1,0 +1,2 @@
+query_id,name,v1_median_ms,v1_min_ms,v1_status,v1_docs_examined,v1_keys_examined,v1_stage,v2_median_ms,v2_min_ms,v2_status,v2_docs_examined,v2_keys_examined,v2_stage,speedup_v1_over_v2
+q10,Prihod i prosečna korpa po načinu plaćanja,,,missing,,,,22770.682,22770.682,ok,5000000,0,COLLSCAN,

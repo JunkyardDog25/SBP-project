@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-27T03:53:36.214895",
+  "results": [
+    {
+      "id": "q10",
+      "name": "Prihod i prosečna korpa po načinu plaćanja",
+      "question": "Po payment_method: prihod, broj porudžbina i prosečan broj stavki (korpa).",
+      "v2": {
+        "collection": "orders",
+        "measure": {
+          "status": "ok",
+          "median_ms": 22770.68249997683,
+          "min_ms": 22770.68249997683,
+          "runs": 1,
+          "warmup_dropped": false,
+          "times_ms": [
+            22770.68249997683
+          ],
+          "n_returned": 7
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "COLLSCAN",
+          "collscan": true,
+          "docs_examined": 5000000,
+          "keys_examined": 0,
+          "n_returned": 5000000,
+          "execution_time_ms": 14798,
+          "indexes": []
+        }
+      }
+    }
+  ]
+}
