@@ -1,31 +1,190 @@
 {
-  "generated_at": "2026-06-27T03:53:36.214895",
+  "generated_at": "2026-06-28T15:23:29.146547",
   "results": [
     {
-      "id": "q10",
-      "name": "Prihod i prosečna korpa po načinu plaćanja",
-      "question": "Po payment_method: prihod, broj porudžbina i prosečan broj stavki (korpa).",
-      "v2": {
-        "collection": "orders",
+      "id": "q6",
+      "name": "Hitna dopuna zaliha (niska zaliha vs tražnja)",
+      "question": "Koje proizvode hitno dopuniti — niska zaliha, a jaka realizovana tražnja?",
+      "v1": {
+        "collection": "orderlines",
         "measure": {
           "status": "ok",
-          "median_ms": 22770.68249997683,
-          "min_ms": 22770.68249997683,
-          "runs": 1,
-          "warmup_dropped": false,
-          "times_ms": [
-            22770.68249997683
-          ],
-          "n_returned": 7
+          "time_ms": 32377.280200016685,
+          "n_returned": 20
         },
         "explain": {
           "status": "ok",
           "stage": "COLLSCAN",
           "collscan": true,
-          "docs_examined": 5000000,
+          "docs_examined": 1000000,
           "keys_examined": 0,
-          "n_returned": 5000000,
-          "execution_time_ms": 14798,
+          "n_returned": 890631,
+          "execution_time_ms": 31504,
+          "indexes": []
+        }
+      },
+      "v2": {
+        "collection": "orders",
+        "measure": {
+          "status": "ok",
+          "time_ms": 2075.385899981484,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "FETCH+IXSCAN",
+          "collscan": false,
+          "docs_examined": 11455,
+          "keys_examined": 11695,
+          "n_returned": 36931,
+          "execution_time_ms": 85,
+          "indexes": [
+            "lines.product_id_1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "q7",
+      "name": "Prekomerne (mrtve) zalihe — zarobljen kapital",
+      "question": "Koji artikli imaju mnogo zaliha a slabu prodaju (najviše zarobljenog kapitala)?",
+      "v1": {
+        "collection": "products",
+        "measure": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: PlanExecutor error during aggregation :: caused by :: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'PlanExecutor error during aggregation :: caused by :: operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        },
+        "explain": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        }
+      },
+      "v2": {
+        "collection": "products",
+        "measure": {
+          "status": "ok",
+          "time_ms": 7457.076800055802,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "COLLSCAN",
+          "collscan": true,
+          "docs_examined": 1008000,
+          "keys_examined": 0,
+          "n_returned": 1000000,
+          "execution_time_ms": 3675,
+          "indexes": []
+        }
+      }
+    },
+    {
+      "id": "q8",
+      "name": "Kvalitet dobavljača — povrat/otkazivanje po brendu",
+      "question": "Koji brendovi imaju najveću stopu vraćenih/otkazanih stavki?",
+      "v1": {
+        "collection": "orderlines",
+        "measure": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: PlanExecutor error during aggregation :: caused by :: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'PlanExecutor error during aggregation :: caused by :: operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        },
+        "explain": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        }
+      },
+      "v2": {
+        "collection": "orders",
+        "measure": {
+          "status": "ok",
+          "time_ms": 3025.345499976538,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "COLLSCAN",
+          "collscan": true,
+          "docs_examined": 1000000,
+          "keys_examined": 0,
+          "n_returned": 1000000,
+          "execution_time_ms": 2753,
+          "indexes": []
+        }
+      }
+    },
+    {
+      "id": "q9",
+      "name": "Rizik nestašice uz aktivnu tražnju",
+      "question": "Koji traženi artikli su rasprodati ili pri kraju zaliha (izgubljena prodaja)?",
+      "v1": {
+        "collection": "orderlines",
+        "measure": {
+          "status": "ok",
+          "time_ms": 6190.94280002173,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "COLLSCAN",
+          "collscan": true,
+          "docs_examined": 1000000,
+          "keys_examined": 0,
+          "n_returned": 161086,
+          "execution_time_ms": 6180,
+          "indexes": []
+        }
+      },
+      "v2": {
+        "collection": "orders",
+        "measure": {
+          "status": "ok",
+          "time_ms": 1723.212799988687,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "FETCH+IXSCAN",
+          "collscan": false,
+          "docs_examined": 135482,
+          "keys_examined": 162159,
+          "n_returned": 416675,
+          "execution_time_ms": 1116,
+          "indexes": [
+            "lines.product_id_1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "q10",
+      "name": "Sezonalni obrt — ukupna prodaja i vršni mesec",
+      "question": "Koliko se artikl ukupno proda i u kom mesecu je tražnja najveća (sezonsko planiranje)?",
+      "v1": {
+        "collection": "orderlines",
+        "measure": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: PlanExecutor error during aggregation :: caused by :: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'PlanExecutor error during aggregation :: caused by :: operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        },
+        "explain": {
+          "status": "DNF",
+          "error": "ExecutionTimeout: operation exceeded time limit, full error: {'ok': 0.0, 'errmsg': 'operation exceeded time limit', 'code': 50, 'codeName': 'MaxTimeMSExpired'}"
+        }
+      },
+      "v2": {
+        "collection": "orders",
+        "measure": {
+          "status": "ok",
+          "time_ms": 5047.611799906008,
+          "n_returned": 20
+        },
+        "explain": {
+          "status": "ok",
+          "stage": "COLLSCAN",
+          "collscan": true,
+          "docs_examined": 1000000,
+          "keys_examined": 0,
+          "n_returned": 1000000,
+          "execution_time_ms": 2841,
           "indexes": []
         }
       }

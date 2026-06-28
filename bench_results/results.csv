@@ -1,2 +1,6 @@
-query_id,name,v1_median_ms,v1_min_ms,v1_status,v1_docs_examined,v1_keys_examined,v1_stage,v2_median_ms,v2_min_ms,v2_status,v2_docs_examined,v2_keys_examined,v2_stage,speedup_v1_over_v2
-q10,Prihod i prosečna korpa po načinu plaćanja,,,missing,,,,22770.682,22770.682,ok,5000000,0,COLLSCAN,
+query_id,name,v1_time_ms,v1_status,v1_docs_examined,v1_keys_examined,v1_stage,v2_time_ms,v2_status,v2_docs_examined,v2_keys_examined,v2_stage,speedup_v1_over_v2
+q6,Hitna dopuna zaliha (niska zaliha vs tražnja),32377.280,ok,1000000,0,COLLSCAN,2075.386,ok,11455,11695,FETCH+IXSCAN,15.601
+q7,Prekomerne (mrtve) zalihe — zarobljen kapital,,DNF,,,,7457.077,ok,1008000,0,COLLSCAN,
+q8,Kvalitet dobavljača — povrat/otkazivanje po brendu,,DNF,,,,3025.345,ok,1000000,0,COLLSCAN,
+q9,Rizik nestašice uz aktivnu tražnju,6190.943,ok,1000000,0,COLLSCAN,1723.213,ok,135482,162159,FETCH+IXSCAN,3.593
+q10,Sezonalni obrt — ukupna prodaja i vršni mesec,,DNF,,,,5047.612,ok,1000000,0,COLLSCAN,
